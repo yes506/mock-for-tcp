@@ -18,7 +18,7 @@ def server_for_tcp():
         if not data:
             break
         print("from connected client: " + str(data))
-        response = "Hello from server"
+        response = "Hello from mock server"
         conn.send(response.encode())
 
     conn.close()
