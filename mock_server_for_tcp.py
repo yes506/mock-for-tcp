@@ -12,6 +12,6 @@ if __name__ == "__main__":
             await websocket.send(f"From Mock TCP Server: {now}")
             time.sleep(0.1)
 
-    start_server = websockets.serve(handler, "localhost", 30105)
+    start_server = websockets.serve(handler, host="10.241.238.4", port=30105)
     asyncio.get_event_loop().run_until_complete(start_server)
     asyncio.get_event_loop().run_forever()
