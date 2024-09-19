@@ -1,4 +1,5 @@
 import socket
+from time import sleep
 
 IP = "10.241.238.4"
 PORT = 30105
@@ -17,7 +18,10 @@ def run_server():
             message = client_socket.recv(SIZE)
             print(f"From {client_address} received: {message}")
             if message:
-                client_socket.sendall("Hello, client. I'm a server.".encode())
+                client_socket.sendall("Hello, client. I'm a mock server.".encode())
+            if message == b'':
+                client_socket.sendall("TCP Connection to mock Server established.".encode())
+                sleep(3)
 
 
 if __name__ == "__main__":
