@@ -1,10 +1,10 @@
 import socket
 
-
 IP = "10.241.238.4"
 PORT = 30105
 SIZE = 1024
 ADDRESS = (IP, PORT)
+
 
 # configure the server
 def run_server():
@@ -13,10 +13,10 @@ def run_server():
         server_socket.listen()
 
         while True:
-            client_socket, client_address = server_socket.accept() # 수신 대기
+            client_socket, client_address = server_socket.accept()  # 수신 대기
             message = client_socket.recv(SIZE)
+            print(f"From {client_address} received: {message}")
             if message:
-                print(f"From {client_address} received: {message}")
                 client_socket.sendall("Hello, client. I'm a server.".encode())
 
 
