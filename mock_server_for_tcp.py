@@ -19,8 +19,7 @@ def server_for_tcp():
         print("from connected user: " + str(data))
         response = "Hello from mock server"
         print("sending: " + response)
-        conn.send(data.encode())
-    conn.send(response.encode())
+        conn.send(response.encode())
 
     conn.close()
 
