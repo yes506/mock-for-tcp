@@ -1,24 +1,17 @@
-import socket
-
-
-def server_for_tcp():
-    # get hostname
-    host = socket.gethostname()
-    port = 30105
-
-    server_socket = socket.socket()
-    server_socket.bind((host, port))
-
-    server_socket.listen(2)
-    conn, address = server_socket.accept()
-    print("Connection from: " + str(address))
-    while True:
-        response = "Hello from mock server"
-        print("sending: " + response)
-        conn.send(response.encode())
-
-    conn.close()
+import asyncio
+import time
+import websockets
+import datetime
+import multiprocessing as mp
 
 
 if __name__ == "__main__":
-    server_for_tcp()
+    async def handler(websocket, path):
+        while True:
+            now = datetime.datetime.utcnow().isoformat() + "Z"
+            await websocket.send(f"From Mock TCP Server: {now}")
+            time.sleep(0.1)
+
+    start_server = websockets.serve(handler, "localhost", 30105)
+    asyncio.get_event_loop().run_until_complete(start_server)
+    asyncio.get_event_loop().run_forever()
