@@ -13,10 +13,6 @@ def server_for_tcp():
     conn, address = server_socket.accept()
     print("Connection from: " + str(address))
     while True:
-        data = conn.recv(1024).decode()
-        if not data:
-            break
-        print("from connected user: " + str(data))
         response = "Hello from mock server"
         print("sending: " + response)
         conn.send(response.encode())
